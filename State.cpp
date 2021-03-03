@@ -8,8 +8,9 @@ bool State0::transition(Automate & automate,Symbole* s){
 	case INT:
 		automate.decalage(s,new State3());
 		break;
-	//case EXPR:
-	
+	/*case EXPR:
+		automate.reduction(s,new State1);
+		break;*/
 	default:
     	automate.decalage(new Symbole(ERREUR), NULL);
 		return false;
@@ -54,6 +55,42 @@ bool State4::transition(Automate & automate,Symbole* s){
 }
 
 bool State5::transition(Automate & automate,Symbole* s){
+	switch(*s){
+	default:
+    automate.decalage(new Symbole(ERREUR), NULL);
+    return false;
+  }
+  return true;
+}
+
+bool State6::transition(Automate & automate,Symbole* s){
+	switch(*s){
+	default:
+    automate.decalage(new Symbole(ERREUR), NULL);
+    return false;
+  }
+  return true;
+}
+
+bool State7::transition(Automate & automate,Symbole* s){
+	switch(*s){
+	default:
+    automate.decalage(new Symbole(ERREUR), NULL);
+    return false;
+  }
+  return true;
+}
+
+bool State8::transition(Automate & automate,Symbole* s){
+	switch(*s){
+	default:
+    automate.decalage(new Symbole(ERREUR), NULL);
+    return false;
+  }
+  return true;
+}
+
+bool State9::transition(Automate & automate,Symbole* s){
 	switch(*s){
 	default:
     automate.decalage(new Symbole(ERREUR), NULL);

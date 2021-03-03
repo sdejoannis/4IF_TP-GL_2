@@ -1,14 +1,10 @@
+#include <string>
 #include "Automate.h"
-#include <string.h>
 
 using namespace std;
 
-class State1;
-class State1;
-class State2;
-class State3;
-class State4;
-class State5;
+
+class Automate;
 
 class State {
 public:
@@ -60,4 +56,32 @@ public:
   State5():State("S5"){};
   bool transition(Automate &automate, Symbole *s);
   ~State5(){};
+};
+
+class State6 : public State {
+public:
+  State6():State("S6"){};
+  bool transition(Automate &automate, Symbole *s);
+  ~State6(){};
+};
+
+class State7 : public State {
+public:
+  State7():State("S7"){};
+  bool transition(Automate &automate, Symbole *s);
+  ~State7(){};
+};
+
+class State8 : public State {
+public:
+  State8():State("S8"){};
+  bool transition(Automate &automate, Symbole *s);
+  ~State8(){};
+};
+
+class State9 : public State {
+public:
+  State9():State("S9"){};
+  bool transition(Automate &automate, Symbole *s);
+  ~State9(){};
 };
