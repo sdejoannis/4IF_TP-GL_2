@@ -3,10 +3,17 @@
 
 int main(int argc, char *argv[]) {
    // Enter expression as parameter
-   std::string chaine(argv[1]);
-   Automate* a = new Automate(chaine);
-   a->lecture();
-   a->afficherResultat();
+
+   if( argc == 2) {
+      std::string chaine(argv[1]);
+      Automate* a = new Automate(chaine);
+      a->lecture();
+      a->afficherResultat();
+   } else {
+      cout << "Format: ./exe EXRESION " << endl;
+      cout << "Mettre des guillemets autour de EXPRESSION" << endl;
+   }
+   
   
    return 0;
 }

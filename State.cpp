@@ -1,7 +1,7 @@
 #include "State.h"
 
 string State::to_string(){
-  return "     current state: " + name;
+  return "     etat: " + name;
 }
 
 bool State0::transition(Automate & automate,Symbole* s){

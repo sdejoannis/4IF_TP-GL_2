@@ -2,7 +2,7 @@
 #include <iostream>
 #include <list>
 
-Automate::Automate(string s) : isAccepted(false),lexer(Lexer(s)), chaine(s) {
+Automate::Automate(string s) : isAccepted(false),chaine(s), lexer(Lexer(s)) {
 		this->stateStack = *(new deque <State*>());
 		this->symbolStack = *(new deque <Symbole*>());
 
@@ -12,17 +12,14 @@ Automate::Automate(string s) : isAccepted(false),lexer(Lexer(s)), chaine(s) {
 
 void Automate::lecture() {
     Symbole * s;
-    int cpt = 0;
     bool isTransitionTrue = true;
     while(isTransitionTrue) {
         cout << endl;
-        cpt++;
-        cout << " -- Start Curseur " << cpt << " ";
+        cout << "-- Symbole pointé: ";
         s = lexer.Consulter();
         s->Affiche();
         cout << endl; 
         isTransitionTrue = (stateStack.front())->transition(*this, s);
-        cout << " -- End Curseur " << cpt << endl;
         if(*(symbolStack.front()) != EXPR) {
             lexer.Avancer();
         }
@@ -40,10 +37,12 @@ void Automate::lecture() {
 void Automate::decalage(Symbole* s, State* e){
         symbolStack.push_front(s);
         stateStack.push_front(e);
+        cout<< "     décalage" << endl;
 }
 
 void Automate::reduction(Symbole* s, int n) {
     
+    //identification ofthe rule
     bool isAddition = false;
     int nbExpr = 0;
     int val = -2;
@@ -51,16 +50,17 @@ void Automate::reduction(Symbole* s, int n) {
     int valExpr2 = -2;
 
     for(int i=1 ; i <= n ; ++i) {
-         cout << "EXPRE 1: " << symbolStack.front()->getValue() << endl;
         if(*(symbolStack.front())==EXPR) 
         {
             nbExpr++;
 
-            if (n<=2)
-            valExpr1 = symbolStack.front()->getValue();
+            if (i<=2) {
+                 valExpr1 = symbolStack.front()->getValue();
+            }
 
-            if (n==3)
-            valExpr2 = symbolStack.front()->getValue();
+            if (i==3) {
+                valExpr2 = symbolStack.front()->getValue();
+            }
         } 
         else if(*(symbolStack.front())==INT)
         {
@@ -73,8 +73,11 @@ void Automate::reduction(Symbole* s, int n) {
         stateStack.pop_front();
         symbolStack.pop_front();
     }
-
-   symbolStack.push_front(new Symbole(EXPR));
+    /*
+    cout << "val: " << val << endl;
+    cout << "valExpr1: " << valExpr1 << endl;
+    cout << "valExpr2: " << valExpr2 << endl;
+    */
 
    //stay with lexer set on same Symbol in main loop 
    lexer.setSymbole(s);
@@ -92,25 +95,29 @@ void Automate::reduction(Symbole* s, int n) {
        } 
        else if( isAddition == true)
        {
-           value = valExpr1 +  valExpr2;
+            value = valExpr1 +  valExpr2;
        }
        else 
        {
             value = valExpr1 *  valExpr2;
        }
    }
-   cout << "value " << value << endl;
+
+
     Expression * newExpression = new Expression(value);
+    symbolStack.push_front(newExpression);
     stateStack.front()->transition(*this, newExpression);
+    cout<< "     reduction" << endl;
 }
 
 void Automate::afficherResultat() {
-    cout << "L'expression "<< chaine;
+    cout << endl << "L'expression "<< chaine;
 
-   if(this->isAccepted == true) {
-        cout << " a été analysée avec succès. " << endl;
-        cout << chaine << " = " << symbolStack.front()->getValue() <<endl;
-    } else {
+    if(this->isAccepted == true) {
+        cout << " a été analysée avec succès. " << endl << endl;
+        cout << chaine << " : " << "nous n'avons malheureusement pas pu terminer l'implémentation du calcul." << endl;//symbolStack.front()->getValue() <<endl;
+    } 
+    else {
         cout << " n'est pas valide pour cette grammaire. " << endl;
     }
 }
