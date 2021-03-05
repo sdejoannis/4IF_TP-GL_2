@@ -34,6 +34,6 @@ void Automate::decalage(Symbole* s, State* e){
     stateStack.push_back(e);
 }
 
-/*void Automate::reduction(Symbole* s, State* e) {
+void Automate::reduction(Symbole* s, int n) {
 
-}*/
+}

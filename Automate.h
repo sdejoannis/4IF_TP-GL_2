@@ -1,4 +1,3 @@
-using namespace std;
 
 #include <string>
 #include <deque>
@@ -8,6 +7,8 @@ using namespace std;
 
 class State;
 
+using namespace std;
+
 class Automate {
 	public:	
 	Automate(string s);
@@ -15,7 +16,8 @@ class Automate {
 	void print()const;
 	void lecture();
 	void decalage(Symbole* s, State* e);
-
+	void reduction(Symbole* s, int n);
+	
 	protected:
 	Lexer lexer;
 	deque <State*> stateStack;

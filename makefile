@@ -5,16 +5,16 @@ CPDBGFLAGS=-g -D MAP
 exe: main.o Automate.o Lexer.o State.o Symbole.o
 	g++ -o exe main.o Automate.o Lexer.o State.o Symbole.o
 
-main.o: main.cpp 
+main.o: main.cpp Automate.h
 	g++ -c main.cpp $(CPFLAGS) $(CPDBGFLAGS)
 
-Automate.o: Automate.cpp Automate.h
+Automate.o: Automate.cpp Automate.h Lexer.h Symbole.h
 	g++ -c Automate.cpp $(CPFLAGS) $(CPDBGFLAGS)
 
 Lexer.o: Lexer.cpp Lexer.h
 	g++ -c Lexer.cpp $(CPFLAGS) $(CPDBGFLAGS)
 
-State.o: State.cpp State.h
+State.o: State.cpp State.h Symbole.h Automate.h
 	g++ -c State.cpp $(CPFLAGS) $(CPDBGFLAGS)
 
 Symbole.o: Symbole.cpp Symbole.h

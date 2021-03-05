@@ -36,4 +36,4 @@ class Expression : public Symbole {
    int getValue();
    protected:
    int value;
-
+};

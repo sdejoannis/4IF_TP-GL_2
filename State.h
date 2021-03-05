@@ -1,8 +1,8 @@
 #include <string>
 #include "Automate.h"
+#include "Symbole.h"
 
 using namespace std;
-
 
 class Automate;
 

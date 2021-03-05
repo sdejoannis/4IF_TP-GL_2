@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Lexer.h"
 #include "Automate.h"
 
 int main(void) {
@@ -9,6 +8,7 @@ int main(void) {
    cout << "Start lecture" << endl;
    a->lecture();
    cout << "End lecture" << endl;
+   
    /*
    Lexer l(chaine);
 
