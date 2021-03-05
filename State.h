@@ -9,6 +9,7 @@ class Automate;
 class State {
 public:
     State(string name):name(name){};
+    string to_string();
     virtual ~State(){};
     virtual bool transition(Automate& automate, Symbole *s) = 0;
 

@@ -49,3 +49,7 @@ void Lexer::Avancer() {
    tampon = nullptr;
 }
 
+void Lexer::setSymbole(Symbole* s) {
+   tampon = s;
+}
+

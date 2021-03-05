@@ -20,3 +20,19 @@ void Expression::Affiche() {
    Symbole::Affiche();
    cout<<"("<<value<<")";
 }
+
+int Symbole::getValue(){ 
+   return -1; 
+}
+
+int Expression::getValue(){
+   return value; 
+}
+
+int Entier::getValue(){
+   return valeur; 
+}
+
+void Expression::setValue(int v) {
+   value = v;
+};
